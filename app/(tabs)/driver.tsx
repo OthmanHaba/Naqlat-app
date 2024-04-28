@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, FlatList, Text, ScrollView } from "react-native";
-
+import DriverItem from "@/components/Driver/DriverItem";
 // Sample driver data
 interface Driver {
   id: number;
@@ -19,13 +19,6 @@ const drivers: Driver[] = [
 ];
 
 const DriverScreen = () => {
-  const renderItem = ({ item }) => {
-    return (
-      <View>
-        <Text>{item.name}</Text>
-      </View>
-    );
-  };
   return (
     <ScrollView>
       <View className="bg-white p-4 rounded-lg my-2 mx-4">
@@ -39,11 +32,16 @@ const DriverScreen = () => {
         </View>
       </View>
       <View>
-        <FlatList
-          scrollEnabled={false}
-          data={drivers}
-          renderItem={renderItem}
-        />
+        <View className="bg-white p-2 mx-2">
+          <View>
+            <Text>name</Text>
+          </View>
+          <FlatList
+            scrollEnabled={false}
+            data={drivers}
+            renderItem={({ item }) => <DriverItem item={item} />}
+          />
+        </View>
       </View>
     </ScrollView>
   );
