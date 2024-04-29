@@ -1,5 +1,8 @@
+// ExpenseItem.tsx
 import React from "react";
 import { View, Text } from "@/components/Themed";
+import { TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 interface ExpenseItemProps {
   item: {
@@ -11,11 +14,21 @@ interface ExpenseItemProps {
 }
 
 const ExpenseItem: React.FC<ExpenseItemProps> = ({ item }) => (
-  <View className="flex flex-row gap-2 justify-between bg-white p-4 rounded-lg shadow-md mb-4">
-    <Text className="text-xs font-semibold mb-2">{item.title}</Text>
-    <Text className="text-xs text-gray-500 mb-2"> {item.driver}</Text>
-    <Text className="text-xs text-red-200 font-bold">السعر: ${item.price}</Text>
-  </View>
+  <TouchableOpacity
+    className="flex-row items-center justify-between bg-white p-4 rounded-lg shadow-md mb-2"
+    activeOpacity={0.7}
+  >
+    <View className="flex-row items-center">
+      <Ionicons name="cash-outline" size={24} color="#DC2626" />
+      <View className="ml-4">
+        <Text className="text-base font-semibold text-gray-800">
+          {item.title}
+        </Text>
+        <Text className="text-sm text-gray-500">{item.driver}</Text>
+      </View>
+    </View>
+    <Text className="text-lg font-bold text-red-600">-${item.price}</Text>
+  </TouchableOpacity>
 );
 
 export default ExpenseItem;

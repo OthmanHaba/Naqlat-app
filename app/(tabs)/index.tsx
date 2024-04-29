@@ -1,14 +1,13 @@
 import {
   ScrollView,
-  Image,
   TouchableOpacity,
-  SectionList,
   FlatList,
   SafeAreaView,
 } from "react-native";
 import { Text, View } from "@/components/Themed";
 import TripItem from "@/components/HomeScreenComponents/TripItem";
 import ExpenseItem from "@/components/HomeScreenComponents/expenseItem";
+import { Ionicons } from "@expo/vector-icons";
 
 interface ITripItem {
   id: number;
@@ -68,76 +67,79 @@ const lastExpenses: IExpenseItem[] = [
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView className="flex-1">
-      <ScrollView className="flex-1 bg-gray-100">
-        <View className="flex-row justify-between items-center mx-4 mt-6 rounded-lg overflow-hidden shadow-md">
-          <View className="flex-1 bg-green-200 py-4 px-6">
-            <View className="flex-row-reverse justify-between items-center bg-green-200 space-x-2">
-              <Image
-                className="h-8 w-8"
-                source={require("./../../assets/images/icon.png")}
-              />
-              <Text className="text-gray-500 text-[15px] font-semibold">
-                إجمالي الدخل
+    <SafeAreaView className="flex-1 bg-gray-100">
+      <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
+        <View className="flex-row justify-between items-center mx-4 mt-6 rounded-2xl overflow-hidden shadow-lg">
+          <View className="flex-1 bg-green-600 py-6 px-8">
+            <View className="flex-row-reverse justify-between items-center bg-green-600 space-x-2">
+              <Ionicons name="cash-outline" size={24} color="white" />
+              <Text className="text-white text-lg font-bold">إجمالي الدخل</Text>
+            </View>
+            <Text className="text-4xl font-bold mt-2 text-white">$100</Text>
+          </View>
+          <View className="flex-1 py-6 px-8 bg-red-600">
+            <View className="flex-row items-center bg-red-600 space-x-2">
+              <Ionicons name="cash-outline" size={24} color="white" />
+              <Text className="text-white font-bold text-lg">
+                إجمالي المصروفات
               </Text>
             </View>
-            <Text className="text-2xl font-bold mt-2">$100</Text>
-          </View>
-          <View className="flex-1 py-4 px-6 text-black bg-red-100">
-            <View className="flex-row items-center bg-red-100 space-x-2">
-              <Image
-                className="h-8 w-8 tint-white"
-                source={require("./../../assets/images/icon.png")}
-              />
-              <Text className=" font-semibold">إجمالي المصروفات</Text>
-            </View>
-            <Text className="text-2xl font-bold  mt-2">$100</Text>
+            <Text className="text-4xl font-bold mt-2 text-white">$100</Text>
           </View>
         </View>
-        <View className="mt-6 mx-4 p-2 rounded">
-          <View className="flex flex-row justify-between">
-            <View>
-              <TouchableOpacity className="bg-blue-200 rounded py-2 px-4">
-                <Text className="text-white">+</Text>
-              </TouchableOpacity>
-            </View>
-            <Text className="text-lg font-semibold text-gray-700 mb-4">
+        <View className="mt-6 mx-4 p-6 rounded-2xl bg-white shadow-lg">
+          <View className="flex-row justify-between items-center mb-6">
+            <TouchableOpacity
+              className="bg-indigo-600 rounded-full py-3 px-4"
+              activeOpacity={0.7}
+            >
+              <Ionicons name="add-outline" size={24} color="white" />
+            </TouchableOpacity>
+            <Text className="text-2xl font-bold text-gray-800">
               آخر الرحلات
             </Text>
           </View>
-          <View className="flex flex-row justify-between gap-2 m-2">
-            <Text className="text-xs text-gray-500 mb-2"> عنوان</Text>
-            <Text className="text-xs text-gray-500 mb-2"> السائق</Text>
-            <Text className="text-xs text-gray-500 mb-2"> السعر</Text>
+          <View className="flex-row justify-between gap-2 mb-4">
+            <Text className="text-sm text-gray-600 font-semibold"> عنوان</Text>
+            <Text className="text-sm text-gray-600 font-semibold"> السائق</Text>
+            <Text className="text-sm text-gray-600 font-semibold"> السعر</Text>
           </View>
           <FlatList
-            scrollEnabled={false}
             data={lastTrips}
             renderItem={({ item }) => <TripItem item={item} />}
+            keyExtractor={(item) => item.id.toString()}
+            ItemSeparatorComponent={() => (
+              <View className="h-[1px] bg-gray-200 my-2" />
+            )}
+            showsVerticalScrollIndicator={false}
           />
         </View>
-        <View className="mt-6 mx-4 p-2 rounded">
-          <View className="flex flex-row justify-between">
-            <View>
-              <TouchableOpacity className="bg-blue-200 rounded py-2 px-4">
-                <Text className="text-white">+</Text>
-              </TouchableOpacity>
-            </View>
-            <Text className="text-lg font-semibold text-gray-700 mb-4">
+        <View className="mt-6 mx-4 p-6 rounded-2xl bg-white shadow-lg">
+          <View className="flex-row justify-between items-center mb-6">
+            <TouchableOpacity
+              className="bg-indigo-600 rounded-full py-3 px-4"
+              activeOpacity={0.7}
+            >
+              <Ionicons name="add-outline" size={24} color="white" />
+            </TouchableOpacity>
+            <Text className="text-2xl font-bold text-gray-800">
               آخر المصروفات
             </Text>
           </View>
-          <View className="flex flex-row justify-between gap-2 m-2">
-            <Text className="text-xs text-gray-500 mb-2"> عنوان</Text>
-            <Text className="text-xs text-gray-500 mb-2"> السائق</Text>
-            <Text className="text-xs text-gray-500 mb-2"> السعر</Text>
+          <View className="flex-row justify-between gap-2 mb-4">
+            <Text className="text-sm text-gray-600 font-semibold"> عنوان</Text>
+            <Text className="text-sm text-gray-600 font-semibold"> السائق</Text>
+            <Text className="text-sm text-gray-600 font-semibold"> السعر</Text>
           </View>
           <FlatList
-            scrollEnabled={false}
             data={lastExpenses}
             renderItem={({ item }) => <ExpenseItem item={item} />}
+            keyExtractor={(item) => item.id.toString()}
+            ItemSeparatorComponent={() => (
+              <View className="h-[1px] bg-gray-200 my-2" />
+            )}
+            showsVerticalScrollIndicator={false}
           />
-          {/* <FlatList data={lastExpenses} /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

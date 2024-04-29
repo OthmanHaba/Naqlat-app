@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { View, FlatList, Text, ScrollView } from "react-native";
+import {
+  View,
+  FlatList,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import DriverItem from "@/components/Driver/DriverItem";
-// Sample driver data
+import { Ionicons } from "@expo/vector-icons";
+
 interface Driver {
   id: number;
   name: string;
@@ -20,30 +27,40 @@ const drivers: Driver[] = [
 
 const DriverScreen = () => {
   return (
-    <ScrollView>
-      <View className="bg-white p-4 rounded-lg my-2 mx-4">
-        <View className="flex flex-row justify-between">
-          <Text>drivers</Text>
-          <Text>4</Text>
+    <View className="flex-1 bg-gray-100">
+      <View className="bg-indigo-600 px-4 py-3 flex-row justify-between items-center rounded-lg mx-4 my-2 shadow-md">
+        <View className="flex-row items-center">
+          <TouchableOpacity className="bg-white rounded-full p-2 mr-2">
+            <Ionicons name="add" size={24} color="indigo" />
+          </TouchableOpacity>
+          <Text className="text-lg font-semibold text-white">
+            Add New Driver
+          </Text>
         </View>
-        <View className="flex flex-row justify-between">
-          <Text>total salary</Text>
-          <Text>10</Text>
+        <View className="flex-row items-center">
+          <Text className="text-gray-300 mr-1">Total drivers:</Text>
+          <Text className="text-lg font-semibold text-white">
+            {drivers.length}
+          </Text>
         </View>
       </View>
-      <View>
-        <View className="bg-white p-2 mx-2">
-          <View>
-            <Text>name</Text>
-          </View>
+      <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
+        <View className="bg-white rounded-lg mx-4 shadow-md divide-y divide-gray-200">
           <FlatList
-            scrollEnabled={false}
             data={drivers}
             renderItem={({ item }) => <DriverItem item={item} />}
+            keyExtractor={(item) => item.id.toString()}
+            ListHeaderComponent={
+              <View className="px-4 py-2 bg-indigo-100">
+                <Text className="text-indigo-800 font-semibold">
+                  Driver List
+                </Text>
+              </View>
+            }
           />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
