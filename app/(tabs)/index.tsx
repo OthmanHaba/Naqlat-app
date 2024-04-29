@@ -69,22 +69,24 @@ export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
       <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
-        <View className="flex-row justify-between items-center mx-4 mt-6 rounded-2xl overflow-hidden shadow-lg">
-          <View className="flex-1 bg-green-600 py-6 px-8">
-            <View className="flex-row-reverse justify-between items-center bg-green-600 space-x-2">
-              <Ionicons name="cash-outline" size={24} color="white" />
-              <Text className="text-white text-lg font-bold">إجمالي الدخل</Text>
+        <View className="flex-row justify-between">
+          <View className="flex-col items-center py-8 px-6 rounded-lg overflow-hidden shadow ">
+            <View className="flex-row items-center mb-4 ">
+              <Ionicons name="cash-outline" size={32} color="green-700" />
+              <Text className="text-green-700  text-lg font-bold ml-2">
+                إجمالي الدخل
+              </Text>
             </View>
-            <Text className="text-4xl font-bold mt-2 text-white">$100</Text>
+            <Text className="text-xl font-bold text-green-700">$100</Text>
           </View>
-          <View className="flex-1 py-6 px-8 bg-red-600">
-            <View className="flex-row items-center bg-red-600 space-x-2">
-              <Ionicons name="cash-outline" size={24} color="white" />
-              <Text className="text-white font-bold text-lg">
+          <View className="flex-col items-center py-8 px-6 rounded-lg overflow-hidden shadow ">
+            <View className="flex-row  items-center mb-4">
+              <Ionicons name="cash-outline" size={32} color="red-700" />
+              <Text className="text-red-700 text-lg font-bold ml-2">
                 إجمالي المصروفات
               </Text>
             </View>
-            <Text className="text-4xl font-bold mt-2 text-white">$100</Text>
+            <Text className="text-xl font-bold text-red-700">$50</Text>
           </View>
         </View>
         <View className="mt-6 mx-4 p-6 rounded-2xl bg-white shadow-lg">
@@ -99,12 +101,8 @@ export default function HomeScreen() {
               آخر الرحلات
             </Text>
           </View>
-          <View className="flex-row justify-between gap-2 mb-4">
-            <Text className="text-sm text-gray-600 font-semibold"> عنوان</Text>
-            <Text className="text-sm text-gray-600 font-semibold"> السائق</Text>
-            <Text className="text-sm text-gray-600 font-semibold"> السعر</Text>
-          </View>
           <FlatList
+            scrollEnabled={false}
             data={lastTrips}
             renderItem={({ item }) => <TripItem item={item} />}
             keyExtractor={(item) => item.id.toString()}
@@ -132,6 +130,7 @@ export default function HomeScreen() {
             <Text className="text-sm text-gray-600 font-semibold"> السعر</Text>
           </View>
           <FlatList
+            scrollEnabled={false}
             data={lastExpenses}
             renderItem={({ item }) => <ExpenseItem item={item} />}
             keyExtractor={(item) => item.id.toString()}

@@ -33,27 +33,20 @@ const DriverScreen = () => {
           <TouchableOpacity className="bg-white rounded-full p-2 mr-2">
             <Ionicons name="add" size={24} color="indigo" />
           </TouchableOpacity>
-          <Text className="text-lg font-semibold text-white">
-            Add New Driver
-          </Text>
-        </View>
-        <View className="flex-row items-center">
-          <Text className="text-gray-300 mr-1">Total drivers:</Text>
-          <Text className="text-lg font-semibold text-white">
-            {drivers.length}
-          </Text>
+          <Text className="text-lg font-semibold text-white">اضافة سائق</Text>
         </View>
       </View>
       <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
-        <View className="bg-white rounded-lg mx-4 shadow-md divide-y divide-gray-200">
+        <View className="bg-indigo-700 p-2 rounded-lg mx-4 shadow-md divide-y divide-gray-200">
           <FlatList
+            scrollEnabled={false}
             data={drivers}
             renderItem={({ item }) => <DriverItem item={item} />}
             keyExtractor={(item) => item.id.toString()}
             ListHeaderComponent={
-              <View className="px-4 py-2 bg-indigo-100">
-                <Text className="text-indigo-800 font-semibold">
-                  Driver List
+              <View className="px-4 py-2 bg-indigo-100 mb-2 rounded-lg">
+                <Text className="text-indigo-800 font-semibold ">
+                  قائمة الساقين
                 </Text>
               </View>
             }

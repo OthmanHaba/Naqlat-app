@@ -8,7 +8,6 @@ interface IDriverComponent {
     name: string;
     salary: number;
     trips: number;
-    rating: number;
     avatar: string; // Added avatar property
   };
 }
@@ -40,12 +39,6 @@ const DriverItem: React.FC<IDriverComponent> = ({ item }) => {
           <Ionicons name="car-outline" size={24} color="indigo" />
           <Text className="text-indigo-700 font-semibold ml-2">
             {item.trips} trips
-          </Text>
-        </View>
-        <View className="flex-row items-center">
-          <Ionicons name="star-outline" size={24} color="indigo" />
-          <Text className="text-indigo-700 font-semibold ml-2">
-            {item.rating}
           </Text>
         </View>
       </View>

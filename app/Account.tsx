@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { FlatList, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
 import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 
@@ -45,6 +44,7 @@ export default function ModalScreen() {
         </View>
       </View>
       <FlatList
+        scrollEnabled={false}
         data={TruckData}
         renderItem={({ item }) => (
           <View className="bg-white mx-4 my-2 p-4 rounded-lg shadow-md">
