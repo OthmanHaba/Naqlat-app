@@ -8,6 +8,7 @@ import { Text, View } from "@/components/Themed";
 import TripItem from "@/components/HomeScreenComponents/TripItem";
 import ExpenseItem from "@/components/HomeScreenComponents/expenseItem";
 import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 
 interface ITripItem {
   id: number;
@@ -91,12 +92,15 @@ export default function HomeScreen() {
         </View>
         <View className="mt-6 mx-4 p-6 rounded-2xl bg-white shadow-lg">
           <View className="flex-row justify-between items-center mb-6">
-            <TouchableOpacity
-              className="bg-indigo-600 rounded-full py-3 px-4"
-              activeOpacity={0.7}
-            >
-              <Ionicons name="add-outline" size={24} color="white" />
-            </TouchableOpacity>
+            <Link href="/createTrip" asChild>
+              <TouchableOpacity
+                className="bg-indigo-600 rounded-full py-3 px-4"
+                activeOpacity={0.7}
+              >
+                <Ionicons name="add-outline" size={24} color="white" />
+              </TouchableOpacity>
+            </Link>
+
             <Text className="text-2xl font-bold text-gray-800">
               آخر الرحلات
             </Text>
@@ -114,20 +118,17 @@ export default function HomeScreen() {
         </View>
         <View className="mt-6 mx-4 p-6 rounded-2xl bg-white shadow-lg">
           <View className="flex-row justify-between items-center mb-6">
-            <TouchableOpacity
-              className="bg-indigo-600 rounded-full py-3 px-4"
-              activeOpacity={0.7}
-            >
-              <Ionicons name="add-outline" size={24} color="white" />
-            </TouchableOpacity>
+            <Link href="/createExpense" asChild>
+              <TouchableOpacity
+                className="bg-indigo-600 rounded-full py-3 px-4"
+                activeOpacity={0.7}
+              >
+                <Ionicons name="add-outline" size={24} color="white" />
+              </TouchableOpacity>
+            </Link>
             <Text className="text-2xl font-bold text-gray-800">
               آخر المصروفات
             </Text>
-          </View>
-          <View className="flex-row justify-between gap-2 mb-4">
-            <Text className="text-sm text-gray-600 font-semibold"> عنوان</Text>
-            <Text className="text-sm text-gray-600 font-semibold"> السائق</Text>
-            <Text className="text-sm text-gray-600 font-semibold"> السعر</Text>
           </View>
           <FlatList
             scrollEnabled={false}

@@ -56,6 +56,12 @@ function RootLayoutNav() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="Account" options={{ presentation: "modal" }} />
+        <Stack.Screen name="driver/create" options={{ title: "اضافة سائق" }} />
+        <Stack.Screen name="createTrip" options={{ title: " اضافة رحلة" }} />
+        <Stack.Screen
+          name="createExpense"
+          options={{ title: " اضافة مصاريف" }}
+        />
       </Stack>
     </ThemeProvider>
   );
