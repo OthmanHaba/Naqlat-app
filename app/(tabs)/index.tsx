@@ -9,6 +9,7 @@ import TripItem from "@/components/HomeScreenComponents/TripItem";
 import ExpenseItem from "@/components/HomeScreenComponents/expenseItem";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
+import axios from "axios";
 
 interface ITripItem {
   id: number;
@@ -22,6 +23,18 @@ interface IExpenseItem {
   title: string;
   driver: string;
   price: number;
+}
+
+async function getTrips() {
+  axios
+    .get("http://127.0.0.1:8000/api/trips")
+    .then((res) => {
+      alert(res);
+    })
+    .catch((e) => {
+      // alert(e);
+      console.log(e);
+    });
 }
 
 const lastTrips: ITripItem[] = [
@@ -71,7 +84,10 @@ export default function HomeScreen() {
     <SafeAreaView className="flex-1 bg-gray-100">
       <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
         <View className="flex-row justify-between">
-          <View className="flex-col items-center py-8 px-6 rounded-lg overflow-hidden shadow ">
+          <TouchableOpacity
+            onPress={getTrips}
+            className="bg-red-500 flex-col items-center py-8 px-6 rounded-lg overflow-hidden shadow "
+          >
             <View className="flex-row items-center mb-4 ">
               <Ionicons name="cash-outline" size={32} color="green-700" />
               <Text className="text-green-700  text-lg font-bold ml-2">
@@ -79,15 +95,15 @@ export default function HomeScreen() {
               </Text>
             </View>
             <Text className="text-xl font-bold text-green-700">$100</Text>
-          </View>
+          </TouchableOpacity>
           <View className="flex-col items-center py-8 px-6 rounded-lg overflow-hidden shadow ">
             <View className="flex-row  items-center mb-4">
-              <Ionicons name="cash-outline" size={32} color="red-700" />
-              <Text className="text-red-700 text-lg font-bold ml-2">
+              <Ionicons name="cash-outline" size={32} color="red-500" />
+              <Text className="text-red-500 text-lg font-bold ml-2">
                 إجمالي المصروفات
               </Text>
             </View>
-            <Text className="text-xl font-bold text-red-700">$50</Text>
+            <Text className="text-xl font-bold text-red-500">$50</Text>
           </View>
         </View>
         <View className="mt-6 mx-4 p-6 rounded-2xl bg-white shadow-lg">
