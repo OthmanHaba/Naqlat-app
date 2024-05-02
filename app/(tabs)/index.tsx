@@ -25,18 +25,6 @@ interface IExpenseItem {
   price: number;
 }
 
-async function getTrips() {
-  axios
-    .get("http://127.0.0.1:8000/api/trips")
-    .then((res) => {
-      alert(res);
-    })
-    .catch((e) => {
-      // alert(e);
-      console.log(e);
-    });
-}
-
 const lastTrips: ITripItem[] = [
   {
     id: 1,
