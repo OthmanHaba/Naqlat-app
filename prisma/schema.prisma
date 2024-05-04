@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Driver {
+  id       Int       @id @default(autoincrement())
+  name     String
+  trucks   Truck[]   @relation("DriverTruck")
+  trips    Trip[]
+  expenses Expense[]
+}
+
+model Truck {
+  id       Int     @id @default(autoincrement())
+  title    String
+  model    String
+  year     Int
+  driver   Driver? @relation("DriverTruck", fields: [driverId], references: [id])
+  driverId Int?
+  trips    Trip[]
+}
+
+model Trip {
+  id        Int       @id @default(autoincrement())
+  driver    Driver    @relation(fields: [driverId], references: [id])
+  driverId  Int
+  truck     Truck     @relation(fields: [truckId], references: [id])
+  truckId   Int
+  startDate DateTime
+  endDate   DateTime
+  income    Income[]
+  expenses  Expense[]
+}
+
+model Expense {
+  id          Int      @id @default(autoincrement())
+  amount      Float
+  date        DateTime
+  driver      Driver   @relation(fields: [driverId], references: [id])
+  driverId    Int
+  trip        Trip?    @relation(fields: [tripId], references: [id])
+  tripId      Int?
+  type        String
+  description String?
+}
+
+model Income {
+  id          Int      @id @default(autoincrement())
+  amount      Float
+  date        DateTime
+  trip        Trip     @relation(fields: [tripId], references: [id])
+  tripId      Int
+  source      String
+  description String?
+}

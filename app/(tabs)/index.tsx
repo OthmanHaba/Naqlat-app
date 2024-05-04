@@ -10,6 +10,7 @@ import ExpenseItem from "@/components/HomeScreenComponents/expenseItem";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import axios from "axios";
+import { supabase } from "../subabase/subabase";
 
 interface ITripItem {
   id: number;
@@ -74,31 +75,31 @@ export default function HomeScreen() {
         <View className="flex-row justify-between">
           <TouchableOpacity
             onPress={getTrips}
-            className="bg-red-500 flex-col items-center py-8 px-6 rounded-lg overflow-hidden shadow "
+            className="flex-col items-center px-6 py-8 overflow-hidden bg-red-500 rounded-lg shadow "
           >
             <View className="flex-row items-center mb-4 ">
               <Ionicons name="cash-outline" size={32} color="green-700" />
-              <Text className="text-green-700  text-lg font-bold ml-2">
+              <Text className="ml-2 text-lg font-bold text-green-700">
                 إجمالي الدخل
               </Text>
             </View>
             <Text className="text-xl font-bold text-green-700">$100</Text>
           </TouchableOpacity>
-          <View className="flex-col items-center py-8 px-6 rounded-lg overflow-hidden shadow ">
-            <View className="flex-row  items-center mb-4">
+          <View className="flex-col items-center px-6 py-8 overflow-hidden rounded-lg shadow ">
+            <View className="flex-row items-center mb-4">
               <Ionicons name="cash-outline" size={32} color="red-500" />
-              <Text className="text-red-500 text-lg font-bold ml-2">
+              <Text className="ml-2 text-lg font-bold text-red-500">
                 إجمالي المصروفات
               </Text>
             </View>
             <Text className="text-xl font-bold text-red-500">$50</Text>
           </View>
         </View>
-        <View className="mt-6 mx-4 p-6 rounded-2xl bg-white shadow-lg">
-          <View className="flex-row justify-between items-center mb-6">
+        <View className="p-6 mx-4 mt-6 bg-white shadow-lg rounded-2xl">
+          <View className="flex-row items-center justify-between mb-6">
             <Link href="/createTrip" asChild>
               <TouchableOpacity
-                className="bg-indigo-600 rounded-full py-3 px-4"
+                className="px-4 py-3 bg-indigo-600 rounded-full"
                 activeOpacity={0.7}
               >
                 <Ionicons name="add-outline" size={24} color="white" />
@@ -120,11 +121,11 @@ export default function HomeScreen() {
             showsVerticalScrollIndicator={false}
           />
         </View>
-        <View className="mt-6 mx-4 p-6 rounded-2xl bg-white shadow-lg">
-          <View className="flex-row justify-between items-center mb-6">
+        <View className="p-6 mx-4 mt-6 bg-white shadow-lg rounded-2xl">
+          <View className="flex-row items-center justify-between mb-6">
             <Link href="/createExpense" asChild>
               <TouchableOpacity
-                className="bg-indigo-600 rounded-full py-3 px-4"
+                className="px-4 py-3 bg-indigo-600 rounded-full"
                 activeOpacity={0.7}
               >
                 <Ionicons name="add-outline" size={24} color="white" />
